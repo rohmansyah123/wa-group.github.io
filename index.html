@@ -1,293 +1,201 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Grup WhatsApp</title>
-  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" type="image/svg+xml">
-  <style>
-    /* Basic Reset & Font */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f0f2f5; /* Light grey background */
-      color: #111;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Ensure full viewport height */
-    }
-
-    /* Top Bar Simulation (for mobile look) */
-    .top-bar-sim {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 15px;
-      font-size: 13px;
-      color: #555;
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-    }
-    .top-bar-sim .left-info span,
-    .top-bar-sim .right-info span {
-      margin-right: 5px;
-    }
-    .top-bar-sim img {
-      width: 14px; /* Smaller icons for top bar */
-      height: 14px;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-
-    /* Browser Address Bar Simulation */
-    .browser-nav-sim {
-      display: flex;
-      align-items: center;
-      padding: 8px 10px;
-      background-color: #f7f7f7;
-      border-bottom: 1px solid #ddd;
-    }
-    .browser-nav-sim a {
-      color: #555;
-      text-decoration: none;
-      font-size: 20px;
-      margin: 0 5px;
-    }
-    .browser-nav-sim .url-bar {
-      display: flex;
-      align-items: center;
-      background-color: #e0e0e0;
-      border-radius: 20px;
-      padding: 5px 15px;
-      flex-grow: 1;
-      margin: 0 10px;
-      color: #333;
-      font-size: 14px;
-      overflow: hidden; /* Hide overflow text */
-      white-space: nowrap; /* Prevent text wrapping */
-    }
-    .browser-nav-sim .url-bar img {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-    }
-    .browser-nav-sim .url-bar span {
-      text-overflow: ellipsis; /* Add ellipsis for long URLs */
-      overflow: hidden;
-    }
-    .browser-nav-sim .tab-count {
-      background-color: #666;
-      color: white;
-      border-radius: 5px;
-      padding: 2px 6px;
-      font-size: 12px;
-      margin-left: 5px;
-    }
-
-    /* Main Content Area */
-    .main-content {
-      flex-grow: 1; /* Allows main content to take available space */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background-color: #fff; /* White background for the card-like section */
-      margin: 20px auto; /* Center the content block */
-      max-width: 400px; /* Limit width for a mobile-like card */
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
-    }
-    .whatsapp-header {
-      display: flex;
-      justify-content: center; /* Center the WhatsApp logo and download icon */
-      align-items: center;
-      width: 100%;
-      margin-bottom: 30px;
-    }
-    .whatsapp-header .menu-icon {
-      margin-right: auto; /* Push menu icon to the left */
-      font-size: 24px;
-      color: #555;
-      cursor: pointer;
-    }
-    .whatsapp-header .logo {
-      width: 120px; /* Adjust WhatsApp logo size */
-      margin-left: auto; /* Push logo to the center */
-    }
-    .whatsapp-header .download-app-icon {
-      width: 30px; /* Download app icon size */
-      height: 30px;
-      margin-left: auto; /* Push download icon to the right */
-    }
-    .chat-icon-container {
-      background: #e6f4ea; /* Light green background */
-      padding: 25px;
-      border-radius: 50%;
-      display: inline-block;
-      margin: 30px 0 15px;
-    }
-    .chat-icon-container img {
-      width: 50px; /* Chat icon size */
-      height: 50px;
-    }
-    .group-name {
-      font-size: 22px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
-    }
-    .group-description {
-      color: #666;
-      font-size: 15px;
-      margin-bottom: 25px;
-    }
-    .btn-join {
-      background-color: #25d366; /* WhatsApp green */
-      color: white;
-      border: none;
-      padding: 15px 35px;
-      font-size: 17px;
-      border-radius: 30px; /* More rounded button */
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 30px;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Button shadow */
-    }
-    .btn-join:hover {
-      background-color: #1da851; /* Darker green on hover */
-    }
-    .download-prompt {
-      color: #666;
-      font-size: 14px;
-    }
-    .download-prompt a {
-      color: #2196f3; /* Blue download link */
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .download-prompt a:hover {
-      text-decoration: underline;
-    }
-
-    /* Dark Footer Section */
-    .dark-footer {
-      background-color: #222; /* Very dark background */
-      padding: 30px 0;
-      color: white;
-      width: 100%;
-      box-sizing: border-box; /* Include padding in width */
-      margin-top: auto; /* Push footer to the bottom */
-    }
-    .footer-download-btn {
-      background-color: #25d366; /* WhatsApp green */
-      color: white;
-      border: none;
-      padding: 15px 50px;
-      font-size: 17px;
-      border-radius: 30px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 25px;
-      transition: background-color 0.3s ease;
-    }
-    .footer-download-btn:hover {
-      background-color: #1da851;
-    }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 25px; /* Increased gap between icons */
-    }
-    .social-icons a img {
-      width: 32px; /* Larger social icons */
-      height: 32px;
-      filter: invert(100%); /* Make icons white */
-      transition: transform 0.3s ease;
-    }
-    .social-icons a img:hover {
-      transform: scale(1.1);
-    }
-
-    /* Bottom Navigation Bar Simulation (for Android mobile look) */
-    .bottom-nav-sim {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background-color: #f0f0f0;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
-      width: 100%;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
-    }
-    .bottom-nav-sim .nav-item {
-      font-size: 26px; /* Larger icons for bottom nav */
-      color: #666;
-      cursor: pointer;
-      user-select: none; /* Prevent text selection */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Grup WhatsApp</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .whatsapp-logo {
+            display: flex;
+            align-items: center;
+        }
+        .whatsapp-logo img {
+            height: 24px; /* Adjust as needed */
+            margin-right: 8px;
+        }
+        .whatsapp-logo span {
+            font-weight: bold;
+            color: #25D366; /* WhatsApp Green */
+            font-size: 18px;
+        }
+        .icon {
+            font-size: 24px;
+            color: #555;
+            cursor: pointer;
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .chat-bubble-icon {
+            background-color: #e0f2f7; /* Light blue */
+            border-radius: 50%;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .chat-bubble-icon img {
+            width: 60px; /* Example size for a chat icon */
+            height: 60px;
+            /* Placeholder for an actual chat bubble image/SVG */
+            /* Or use a font icon like from Font Awesome */
+        }
+        .chat-bubble-icon .dots {
+            width: 60px;
+            height: 60px;
+            background-color: #a0d9f0; /* Slightly darker blue for dots */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 40px;
+            line-height: 1;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .btn-join-chat {
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-join-chat:hover {
+            background-color: #1DA851;
+        }
+        .download-whatsapp-prompt {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #666;
+        }
+        .download-whatsapp-prompt a {
+            color: #007bff; /* Blue link */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .download-whatsapp-prompt a:hover {
+            text-decoration: underline;
+        }
+        .main-download-button-container {
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        .btn-main-download {
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 18px 60px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .btn-main-download:hover {
+            background-color: #1DA851;
+        }
+        .btn-main-download .download-icon {
+            margin-left: 10px;
+            font-size: 24px;
+        }
+        footer {
+            background-color: #333;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-icon {
+            background-color: #555;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .social-icon:hover {
+            background-color: #777;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="whatsapp-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+            <span>WhatsApp</span>
+        </div>
+        <div>
+            <span class="icon">&#9776;</span> <span class="icon" style="margin-left: 15px;">&#x2B07;</span> </div>
+    </header>
 
-  <div class="top-bar-sim">
-    <div class="left-info">
-      <span>11:13</span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/1000/1000305.png" alt="Wifi"></span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/298/298135.png" alt="Silent"></span>
+    <main>
+        <div class="chat-bubble-icon">
+            <div class="dots">...</div> </div>
+        <h1>Test</h1>
+        <p>Undangan Grup WhatsApp</p>
+        <a href="https://chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z" class="btn-join-chat">Bergabung ke Chat</a>
+
+        <div class="download-whatsapp-prompt">
+            Belum menggunakan WhatsApp? <a href="#">Unduh</a>
+        </div>
+    </main>
+
+    <div class="main-download-button-container">
+        <a href="#" class="btn-main-download">
+            Unduh <span class="download-icon">&#x2B07;</span>
+        </a>
     </div>
-    <div class="right-info">
-      <span><img src="https://cdn-icons-png.flaticon.com/512/61/61092.png" alt="Signal"></span>
-      <span>4G</span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/282/282367.png" alt="Battery"> 48%</span>
-    </div>
-  </div>
 
-  <div class="browser-nav-sim">
-    <a href="#" onclick="history.back(); return false;"><img src="https://cdn-icons-png.flaticon.com/512/25/25695.png" width="20" alt="Back"></a>
-    <div class="url-bar">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Icon">
-      <span>chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z</span>
-    </div>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/107/107074.png" width="20" alt="Refresh"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/103/103233.png" width="20" alt="Plus"></a>
-    <span class="tab-count">16</span>
-  </div>
-
-  <div class="main-content">
-    <div class="whatsapp-header">
-      <span class="menu-icon">≡</span>
-      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-      <img class="download-app-icon" src="https://cdn-icons-png.flaticon.com/512/298/298135.png" alt="Download App Icon" style="filter: invert(30%) sepia(80%) saturate(2000%) hue-rotate(80deg) brightness(90%);"> </div>
-
-    <div class="chat-icon-container">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="Chat Icon">
-    </div>
-    <div class="group-name">Test</div>
-    <div class="group-description">Undangan Grup WhatsApp</div>
-    <a class="btn-join" href="https://chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z" target="_blank">Bergabung ke Chat</a>
-    <p class="download-prompt">Belum menggunakan WhatsApp? <a href="https://www.whatsapp.com/download/" target="_blank">Unduh</a></p>
-  </div>
-
-  <div class="dark-footer">
-    <a href="https://www.whatsapp.com/download/" class="footer-download-btn" target="_blank">Unduh ⬇</a>
-    <div class="social-icons">
-      <a href="https://twitter.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X (Twitter)"></a>
-      <a href="https://www.youtube.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-      <a href="https://www.instagram.com/whatsapp/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
-      <a href="https://www.facebook.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
-    </div>
-  </div>
-
-  <div class="bottom-nav-sim">
-    <div class="nav-item">≡</div>
-    <div class="nav-item">○</div>
-    <div class="nav-item">☐</div>
-  </div>
-
+    <footer>
+        <div class="social-icons">
+            <a href="#" class="social-icon">X</a> <a href="#" class="social-icon">&#x25BA;</a> <a href="#" class="social-icon">&#x1F4F8;</a> <a href="#" class="social-icon">&#x1F44D;</a> </div>
+    </footer>
 </body>
 </html>
