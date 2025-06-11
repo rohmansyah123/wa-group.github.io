@@ -6,45 +6,55 @@
   <title>Undangan Grup WhatsApp</title>
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" type="image/svg+xml">
   <style>
+    /* Basic Reset & Font */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #fff;
+      background-color: #f0f2f5; /* Light grey background */
       color: #111;
       text-align: center;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100vh; /* Ensure full viewport height */
     }
-    .header-container {
-      padding: 20px;
+
+    /* Top Bar Simulation (for mobile look) */
+    .top-bar-sim {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .header-container .left-icons {
-      display: flex;
-      gap: 10px;
-      font-size: 14px;
+      padding: 8px 15px;
+      font-size: 13px;
       color: #555;
-    }
-    .header-container .right-icons {
-      display: flex;
-      gap: 10px;
-      font-size: 14px;
-      color: #555;
-    }
-    .nav-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background-color: #f7f7f7;
+      background-color: #fff;
       border-bottom: 1px solid #eee;
     }
-    .nav-bar .browser-url {
+    .top-bar-sim .left-info span,
+    .top-bar-sim .right-info span {
+      margin-right: 5px;
+    }
+    .top-bar-sim img {
+      width: 14px; /* Smaller icons for top bar */
+      height: 14px;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    /* Browser Address Bar Simulation */
+    .browser-nav-sim {
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+    }
+    .browser-nav-sim a {
+      color: #555;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 0 5px;
+    }
+    .browser-nav-sim .url-bar {
       display: flex;
       align-items: center;
       background-color: #e0e0e0;
@@ -54,86 +64,135 @@
       margin: 0 10px;
       color: #333;
       font-size: 14px;
+      overflow: hidden; /* Hide overflow text */
+      white-space: nowrap; /* Prevent text wrapping */
     }
-    .nav-bar .browser-url img {
+    .browser-nav-sim .url-bar img {
       width: 16px;
-      margin-right: 5px;
+      height: 16px;
+      margin-right: 8px;
     }
+    .browser-nav-sim .url-bar span {
+      text-overflow: ellipsis; /* Add ellipsis for long URLs */
+      overflow: hidden;
+    }
+    .browser-nav-sim .tab-count {
+      background-color: #666;
+      color: white;
+      border-radius: 5px;
+      padding: 2px 6px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    /* Main Content Area */
     .main-content {
-      flex-grow: 1;
+      flex-grow: 1; /* Allows main content to take available space */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background-color: #fff; /* White background for the card-like section */
+      margin: 20px auto; /* Center the content block */
+      max-width: 400px; /* Limit width for a mobile-like card */
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
     }
-    .logo-main {
-      width: 50px;
-      margin-top: 40px;
+    .whatsapp-header {
+      display: flex;
+      justify-content: center; /* Center the WhatsApp logo and download icon */
+      align-items: center;
+      width: 100%;
+      margin-bottom: 30px;
     }
-    .icon {
-      background: #e6f4ea;
-      padding: 20px;
+    .whatsapp-header .menu-icon {
+      margin-right: auto; /* Push menu icon to the left */
+      font-size: 24px;
+      color: #555;
+      cursor: pointer;
+    }
+    .whatsapp-header .logo {
+      width: 120px; /* Adjust WhatsApp logo size */
+      margin-left: auto; /* Push logo to the center */
+    }
+    .whatsapp-header .download-app-icon {
+      width: 30px; /* Download app icon size */
+      height: 30px;
+      margin-left: auto; /* Push download icon to the right */
+    }
+    .chat-icon-container {
+      background: #e6f4ea; /* Light green background */
+      padding: 25px;
       border-radius: 50%;
       display: inline-block;
-      margin: 30px 0 10px;
+      margin: 30px 0 15px;
     }
-    .icon img {
-      width: 40px;
+    .chat-icon-container img {
+      width: 50px; /* Chat icon size */
+      height: 50px;
     }
     .group-name {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
+      color: #333;
       margin-bottom: 5px;
     }
-    .desc {
+    .group-description {
       color: #666;
-      margin-bottom: 20px;
+      font-size: 15px;
+      margin-bottom: 25px;
     }
     .btn-join {
-      background-color: #25d366;
+      background-color: #25d366; /* WhatsApp green */
       color: white;
       border: none;
-      padding: 14px 28px;
-      font-size: 16px;
-      border-radius: 25px;
+      padding: 15px 35px;
+      font-size: 17px;
+      border-radius: 30px; /* More rounded button */
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       margin-bottom: 30px;
       transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Button shadow */
     }
     .btn-join:hover {
-      background-color: #1da851;
+      background-color: #1da851; /* Darker green on hover */
     }
-    .download-text {
-      margin-bottom: 40px;
+    .download-prompt {
       color: #666;
+      font-size: 14px;
     }
-    .download-text a {
-      color: #2196f3;
+    .download-prompt a {
+      color: #2196f3; /* Blue download link */
       text-decoration: none;
+      font-weight: bold;
     }
-    .download-text a:hover {
+    .download-prompt a:hover {
       text-decoration: underline;
     }
-    .footer-container {
-      background-color: #222; /* Darker footer background */
-      padding: 20px 0;
+
+    /* Dark Footer Section */
+    .dark-footer {
+      background-color: #222; /* Very dark background */
+      padding: 30px 0;
       color: white;
       width: 100%;
+      box-sizing: border-box; /* Include padding in width */
+      margin-top: auto; /* Push footer to the bottom */
     }
     .footer-download-btn {
-      display: inline-block;
-      background-color: #25d366;
+      background-color: #25d366; /* WhatsApp green */
       color: white;
       border: none;
-      padding: 14px 40px; /* Wider button */
-      font-size: 16px;
-      border-radius: 25px;
+      padding: 15px 50px;
+      font-size: 17px;
+      border-radius: 30px;
       cursor: pointer;
       text-decoration: none;
-      margin-bottom: 20px;
+      display: inline-block;
+      margin-bottom: 25px;
       transition: background-color 0.3s ease;
     }
     .footer-download-btn:hover {
@@ -142,11 +201,11 @@
     .social-icons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 25px; /* Increased gap between icons */
     }
     .social-icons a img {
-      width: 30px; /* Slightly larger social icons */
-      height: 30px;
+      width: 32px; /* Larger social icons */
+      height: 32px;
       filter: invert(100%); /* Make icons white */
       transition: transform 0.3s ease;
     }
@@ -154,63 +213,67 @@
       transform: scale(1.1);
     }
 
-    /* Simulate bottom navigation bar */
-    .bottom-nav {
-      position: sticky;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #f0f0f0;
-      padding: 10px 0;
-      border-top: 1px solid #ccc;
+    /* Bottom Navigation Bar Simulation (for Android mobile look) */
+    .bottom-nav-sim {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      background-color: #f0f0f0;
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+      width: 100%;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
     }
-    .bottom-nav-item {
-      font-size: 24px; /* Icon size */
+    .bottom-nav-sim .nav-item {
+      font-size: 26px; /* Larger icons for bottom nav */
       color: #666;
+      cursor: pointer;
+      user-select: none; /* Prevent text selection */
     }
   </style>
 </head>
 <body>
 
-  <div class="header-container">
-    <div class="left-icons">
+  <div class="top-bar-sim">
+    <div class="left-info">
       <span>11:13</span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/1000/1000305.png" width="16" alt="Wifi"></span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/298/298135.png" width="16" alt="Battery"></span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/1000/1000305.png" alt="Wifi"></span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/298/298135.png" alt="Silent"></span>
     </div>
-    <div class="right-icons">
-      <span><img src="https://cdn-icons-png.flaticon.com/512/61/61092.png" width="16" alt="Signal"></span>
+    <div class="right-info">
+      <span><img src="https://cdn-icons-png.flaticon.com/512/61/61092.png" alt="Signal"></span>
       <span>4G</span>
-      <span><img src="https://cdn-icons-png.flaticon.com/512/282/282367.png" width="16" alt="Battery"> 48%</span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/282/282367.png" alt="Battery"> 48%</span>
     </div>
   </div>
 
-  <div class="nav-bar">
+  <div class="browser-nav-sim">
     <a href="#" onclick="history.back(); return false;"><img src="https://cdn-icons-png.flaticon.com/512/25/25695.png" width="20" alt="Back"></a>
-    <div class="browser-url">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" width="16" alt="WhatsApp">
-      <span>chat.whatsapp.com/Ht...</span>
+    <div class="url-bar">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Icon">
+      <span>chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z</span>
     </div>
     <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/107/107074.png" width="20" alt="Refresh"></a>
     <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/103/103233.png" width="20" alt="Plus"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2150/2150493.png" width="20" alt="Tabs"></a>
+    <span class="tab-count">16</span>
   </div>
 
   <div class="main-content">
-    <img class="logo-main" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-    <div class="icon">
+    <div class="whatsapp-header">
+      <span class="menu-icon">≡</span>
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+      <img class="download-app-icon" src="https://cdn-icons-png.flaticon.com/512/298/298135.png" alt="Download App Icon" style="filter: invert(30%) sepia(80%) saturate(2000%) hue-rotate(80deg) brightness(90%);"> </div>
+
+    <div class="chat-icon-container">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="Chat Icon">
     </div>
-    <div class="group-name">Nama Grup Anda</div> <div class="desc">Undangan Grup WhatsApp</div>
+    <div class="group-name">Test</div>
+    <div class="group-description">Undangan Grup WhatsApp</div>
     <a class="btn-join" href="https://chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z" target="_blank">Bergabung ke Chat</a>
-    <p class="download-text">Belum menggunakan WhatsApp? <a href="https://www.whatsapp.com/download/" target="_blank">Unduh</a></p>
+    <p class="download-prompt">Belum menggunakan WhatsApp? <a href="https://www.whatsapp.com/download/" target="_blank">Unduh</a></p>
   </div>
 
-  <div class="footer-container">
+  <div class="dark-footer">
     <a href="https://www.whatsapp.com/download/" class="footer-download-btn" target="_blank">Unduh ⬇</a>
     <div class="social-icons">
       <a href="https://twitter.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X (Twitter)"></a>
@@ -220,10 +283,10 @@
     </div>
   </div>
 
-  <div class="bottom-nav">
-    <div class="bottom-nav-item">≡</div>
-    <div class="bottom-nav-item">○</div>
-    <div class="bottom-nav-item">☐</div>
+  <div class="bottom-nav-sim">
+    <div class="nav-item">≡</div>
+    <div class="nav-item">○</div>
+    <div class="nav-item">☐</div>
   </div>
 
 </body>
