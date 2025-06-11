@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Undangan Grup WhatsApp</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" type="image/svg+xml">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,12 +12,64 @@
       background: #fff;
       color: #111;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    .header {
-      margin-top: 40px;
+    .header-container {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .logo {
+    .header-container .left-icons {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+    .header-container .right-icons {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #eee;
+    }
+    .nav-bar .browser-url {
+      display: flex;
+      align-items: center;
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      padding: 5px 15px;
+      flex-grow: 1;
+      margin: 0 10px;
+      color: #333;
+      font-size: 14px;
+    }
+    .nav-bar .browser-url img {
+      width: 16px;
+      margin-right: 5px;
+    }
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .logo-main {
       width: 50px;
+      margin-top: 40px;
     }
     .icon {
       background: #e6f4ea;
@@ -31,6 +84,7 @@
     .group-name {
       font-size: 20px;
       font-weight: bold;
+      margin-bottom: 5px;
     }
     .desc {
       color: #666;
@@ -47,49 +101,130 @@
       text-decoration: none;
       display: inline-block;
       margin-bottom: 30px;
+      transition: background-color 0.3s ease;
     }
-    .footer {
-      background-color: #111;
-      padding: 20px;
-      margin-top: 40px;
+    .btn-join:hover {
+      background-color: #1da851;
     }
-    .footer a {
-      margin: 0 10px;
-      color: white;
+    .download-text {
+      margin-bottom: 40px;
+      color: #666;
+    }
+    .download-text a {
+      color: #2196f3;
       text-decoration: none;
-      font-size: 20px;
     }
-    .download {
-      display: block;
-      margin: 15px 0;
-      color: #25d366;
-      font-weight: bold;
+    .download-text a:hover {
+      text-decoration: underline;
+    }
+    .footer-container {
+      background-color: #222; /* Darker footer background */
+      padding: 20px 0;
+      color: white;
+      width: 100%;
+    }
+    .footer-download-btn {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 14px 40px; /* Wider button */
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+    .footer-download-btn:hover {
+      background-color: #1da851;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .social-icons a img {
+      width: 30px; /* Slightly larger social icons */
+      height: 30px;
+      filter: invert(100%); /* Make icons white */
+      transition: transform 0.3s ease;
+    }
+    .social-icons a img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Simulate bottom navigation bar */
+    .bottom-nav {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    }
+    .bottom-nav-item {
+      font-size: 24px; /* Icon size */
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+  <div class="header-container">
+    <div class="left-icons">
+      <span>11:13</span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/1000/1000305.png" width="16" alt="Wifi"></span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/298/298135.png" width="16" alt="Battery"></span>
+    </div>
+    <div class="right-icons">
+      <span><img src="https://cdn-icons-png.flaticon.com/512/61/61092.png" width="16" alt="Signal"></span>
+      <span>4G</span>
+      <span><img src="https://cdn-icons-png.flaticon.com/512/282/282367.png" width="16" alt="Battery"> 48%</span>
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <a href="#" onclick="history.back(); return false;"><img src="https://cdn-icons-png.flaticon.com/512/25/25695.png" width="20" alt="Back"></a>
+    <div class="browser-url">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" width="16" alt="WhatsApp">
+      <span>chat.whatsapp.com/Ht...</span>
+    </div>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/107/107074.png" width="20" alt="Refresh"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/103/103233.png" width="20" alt="Plus"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2150/2150493.png" width="20" alt="Tabs"></a>
+  </div>
+
+  <div class="main-content">
+    <img class="logo-main" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
     <div class="icon">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="Chat Icon">
     </div>
-    <div class="group-name">Test</div>
-    <div class="desc">Undangan Grup WhatsApp</div>
+    <div class="group-name">Nama Grup Anda</div> <div class="desc">Undangan Grup WhatsApp</div>
     <a class="btn-join" href="https://chat.whatsapp.com/Ht4qvuKU41jGl1Yyaz5j2Z" target="_blank">Bergabung ke Chat</a>
-    <p>Belum menggunakan WhatsApp? <a href="https://www.whatsapp.com/download/" style="color:#2196f3;">Unduh</a></p>
+    <p class="download-text">Belum menggunakan WhatsApp? <a href="https://www.whatsapp.com/download/" target="_blank">Unduh</a></p>
   </div>
 
-  <div class="footer">
-    <a href="https://www.whatsapp.com/download/" class="download">Unduh ⬇</a>
-    <div>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" width="24" alt="X"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24" alt="YouTube"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" width="24" alt="Instagram"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" width="24" alt="Facebook"></a>
+  <div class="footer-container">
+    <a href="https://www.whatsapp.com/download/" class="footer-download-btn" target="_blank">Unduh ⬇</a>
+    <div class="social-icons">
+      <a href="https://twitter.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="X (Twitter)"></a>
+      <a href="https://www.youtube.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+      <a href="https://www.instagram.com/whatsapp/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
+      <a href="https://www.facebook.com/whatsapp" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
     </div>
   </div>
 
-</body>
-    </html>
+  <div class="bottom-nav">
+    <div class="bottom-nav-item">≡</div>
+    <div class="bottom-nav-item">○</div>
+    <div class="bottom-nav-item">☐</div>
+  </div>
 
+</body>
+</html>
